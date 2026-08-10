@@ -644,10 +644,11 @@
     }
     .dropdown-menu{
       position:static; transform:none; opacity:1; visibility:visible;
-      display:none; box-shadow:none; border:none; border-left:2px solid var(--wine-700);
+      display:none; box-shadow:none; border:none; /* border-left:2px solid var(--wine-700);*/
       min-width:0; width:100%; margin-top:8px; padding:0 0 0 10px; background:transparent;
     }
-    .nav-dropdown.open .dropdown-menu{ display:block; }
+   /* .nav-dropdown.open .dropdown-menu{ display:block; }*/
+    .nav-dropdown.open .dropdown-menu{ display:block; transform:none; }
     .nav-dropdown.open > .drop-toggle .caret{ transform:rotate(-135deg); margin-top:2px; }
   }
 
