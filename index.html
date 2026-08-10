@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SISA — Makeup Artistry by Sowntharya</title>
+<title>SISA - By Sowntharya</title>
 <meta name="description" content="SISA by Sowntharya — Bridal, bridesmaid and groom makeup artistry. HD, skin-finish & airbrush looks for engagement, mugurtham, reception and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
     --maroon-950:#075985;
     --maroon-900:#0C6D9E;
     --wine-700:#0EA5E9;
-    --wine-600:#38BDF8;
+    --wine-600:#4FA9CC;
     --gold-500:#F0812E;
     --gold-300:#F7A75C;
     --gold-100:#FCE0C2;
@@ -79,33 +79,54 @@
   }
   .navbar{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px clamp(20px,5vw,64px);
+    padding:12px clamp(20px,5vw,64px);
+    gap:12px;
   }
   .brand{
-    display:flex; align-items:baseline; gap:10px;
+    display:flex; align-items:center; gap:10px;
+    min-width:0;
   }
+  .brand .logo-img{
+    height:44px;
+    width:44px;
+    object-fit:contain;
+    flex-shrink:0;
+    border-radius:50%;
+  }
+  .brand .logo-fallback{
+    height:44px; width:44px; flex-shrink:0;
+    border-radius:50%;
+    background:linear-gradient(160deg, var(--wine-700), var(--maroon-900));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif;
+    font-weight:700; font-size:1.3rem; color:var(--gold-300);
+  }
+  .brand .brand-text{ display:flex; flex-direction:column; min-width:0; }
   .brand .mark{
     font-family:'Cormorant Garamond', serif;
-    font-size:1.7rem; font-weight:700;
+    font-size:1.5rem; font-weight:700;
     letter-spacing:0.14em;
     color:var(--wine-700);
+    white-space:nowrap;
   }
   .brand .sub{
     font-family:'Marcellus', serif;
-    font-size:0.62rem;
-    letter-spacing:0.2em;
+    font-size:0.6rem;
+    letter-spacing:0.18em;
     text-transform:uppercase;
     color:var(--ink-900);
     opacity:0.55;
+    white-space:nowrap;
   }
-  nav.links{ display:flex; gap:clamp(16px,2.4vw,34px); align-items:center; }
+  nav.links{ display:flex; gap:clamp(14px,2.2vw,30px); align-items:center; }
   nav.links a{
-    font-size:0.86rem;
+    font-size:0.85rem;
     letter-spacing:0.04em;
     color:var(--ink-900);
     position:relative;
     padding:4px 0;
     transition:color .25s ease;
+    white-space:nowrap;
   }
   nav.links a::after{
     content:'';
@@ -119,9 +140,9 @@
   .nav-cta{
     background:var(--wine-700);
     color:var(--cream) !important;
-    padding:10px 22px;
+    padding:10px 20px;
     border-radius:2px;
-    font-size:0.8rem;
+    font-size:0.78rem;
     letter-spacing:0.08em;
     text-transform:uppercase;
     border:1px solid var(--wine-700);
@@ -129,15 +150,66 @@
   }
   .nav-cta:hover{ background:transparent; color:var(--wine-700) !important; }
   .nav-cta::after{ display:none; }
-  .burger{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+
+  /* ---------- Nav dropdown (Grand Bridal Catalogue) ---------- */
+  .nav-dropdown{ position:relative; }
+  .nav-dropdown > .drop-toggle{
+    display:inline-flex; align-items:center; gap:6px;
+    background:none; border:none; cursor:pointer;
+    font-family:'Jost', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    color:var(--ink-900);
+    padding:4px 0;
+  }
+  .nav-dropdown > .drop-toggle .caret{
+    width:8px; height:8px;
+    border-right:1.5px solid var(--wine-700);
+    border-bottom:1.5px solid var(--wine-700);
+    transform:rotate(45deg);
+    transition:transform .25s ease;
+    margin-top:-3px;
+  }
+  .nav-dropdown:hover > .drop-toggle,
+  .nav-dropdown.open > .drop-toggle{ color:var(--wine-700); }
+  .nav-dropdown.open > .drop-toggle .caret{ transform:rotate(-135deg); margin-top:2px; }
+  .dropdown-menu{
+    position:absolute; top:calc(100% + 14px); left:50%;
+    transform:translateX(-50%);
+    background:var(--ivory-50);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    min-width:230px;
+    padding:8px;
+    opacity:0; visibility:hidden;
+    transition:opacity .2s ease, transform .2s ease, visibility .2s ease;
+    z-index:120;
+  }
+  .nav-dropdown:hover .dropdown-menu,
+  .nav-dropdown.open .dropdown-menu{
+    opacity:1; visibility:visible;
+    transform:translateX(-50%) translateY(0);
+  }
+  .dropdown-menu a{
+    display:block;
+    font-size:0.84rem;
+    padding:10px 14px;
+    color:var(--ink-900);
+    border-radius:2px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .dropdown-menu a:hover{ background:var(--blush-100); color:var(--wine-700); }
+  .dropdown-menu a::after{ display:none; }
+
+  .burger{ display:none; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; }
   .burger span{ display:block; width:24px; height:2px; background:var(--wine-700); margin:5px 0; }
 
   /* ---------- Hero ---------- */
   .hero{
     position:relative;
-    background:radial-gradient(ellipse at 20% 0%, var(--wine-600) 0%, var(--maroon-900) 55%, var(--maroon-950) 100%);
+    background:radial-gradient(ellipse at 20% 0%, var(--wine-600) 0%, var(--maroon-900) 45%, var(--maroon-950) 100%);
     color:var(--cream);
-    padding:clamp(70px,12vw,140px) 0 clamp(60px,9vw,110px);
+    padding:clamp(56px,12vw,140px) 0 clamp(48px,9vw,110px);
     overflow:hidden;
   }
   .hero::before{
@@ -157,7 +229,7 @@
     align-items:center;
   }
   .hero h1{
-    font-size:clamp(2.8rem,6vw,4.6rem);
+    font-size:clamp(2.4rem,6vw,4.6rem);
     margin:18px 0 22px;
     color:var(--cream);
   }
@@ -166,7 +238,7 @@
     color:var(--gold-300);
   }
   .hero p.tag{
-    font-size:1.05rem;
+    font-size:1.02rem;
     max-width:46ch;
     color:var(--cream);
     opacity:0.82;
@@ -204,11 +276,14 @@
   .hero-medallion svg{ width:100%; height:100%; }
   .hero-medallion .ring{ animation:spin 60s linear infinite; transform-origin:center; }
   @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){
+    .hero-medallion .ring{ animation:none; }
+  }
 
   /* ---------- Section shells ---------- */
-  section{ padding:clamp(64px,9vw,108px) 0; }
-  .section-head{ text-align:center; max-width:680px; margin:0 auto 52px; }
-  .section-head h2{ font-size:clamp(2.1rem,4vw,2.9rem); margin-top:12px; color:var(--maroon-900); }
+  section{ padding:clamp(56px,9vw,108px) 0; }
+  .section-head{ text-align:center; max-width:680px; margin:0 auto 44px; }
+  .section-head h2{ font-size:clamp(1.9rem,4vw,2.9rem); margin-top:12px; color:var(--maroon-900); }
   .section-head p{ margin-top:14px; color:var(--ink-900); opacity:0.72; line-height:1.65; }
   .center{ text-align:center; }
 
@@ -225,6 +300,7 @@
     padding:14px;
     background:var(--ivory-50);
   }
+  .about-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
   .about-frame .inner{
     background:linear-gradient(160deg, var(--wine-700), var(--maroon-900));
     aspect-ratio:4/5;
@@ -237,7 +313,7 @@
     font-weight:700;
     letter-spacing:0.06em;
   }
-  .about-copy h2{ color:var(--maroon-900); font-size:clamp(2rem,3.6vw,2.7rem); margin:10px 0 18px; }
+  .about-copy h2{ color:var(--maroon-900); font-size:clamp(1.9rem,3.6vw,2.7rem); margin:10px 0 18px; }
   .about-copy p{ line-height:1.85; opacity:0.85; margin-bottom:16px; }
   .about-copy .signature{
     font-family:'Cormorant Garamond', serif;
@@ -254,16 +330,17 @@
   }
   .svc-tabs button{
     font-family:'Marcellus', serif;
-    font-size:0.76rem;
-    letter-spacing:0.14em;
+    font-size:0.74rem;
+    letter-spacing:0.12em;
     text-transform:uppercase;
-    padding:11px 20px;
+    padding:11px 18px;
     background:transparent;
     border:1px solid var(--line);
     color:var(--ink-900);
     cursor:pointer;
     border-radius:30px;
     transition:all .25s ease;
+    white-space:nowrap;
   }
   .svc-tabs button.active, .svc-tabs button:hover{
     background:var(--wine-700); border-color:var(--wine-700); color:var(--cream);
@@ -309,15 +386,18 @@
     border-left:1px solid var(--gold-500);
   }
   .svc-card h3{
-    font-size:1.5rem; color:var(--maroon-900); margin-bottom:6px;
+    font-size:1.4rem; color:var(--maroon-900); margin-bottom:6px;
   }
   .svc-card .price{
     font-family:'Cormorant Garamond', serif;
-    font-size:2.5rem; font-weight:700;
+    font-size:2.4rem; font-weight:700;
     color:var(--wine-700);
     margin:10px 0 16px;
   }
   .svc-card .price sup{ font-size:1.1rem; top:-0.9em; }
+  .svc-card .price.on-request{
+    font-size:1.15rem; font-family:'Marcellus', serif; letter-spacing:0.04em; color:var(--wine-700);
+  }
   .svc-card ul.includes{ margin-top:14px; }
   .svc-card ul.includes li{
     font-size:0.85rem; opacity:0.75; padding-left:16px; position:relative; margin-bottom:6px;
@@ -346,7 +426,8 @@
     text-align:center;
   }
   .simple-card h4{ font-family:'Marcellus', serif; font-size:0.82rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--wine-700); margin-bottom:10px; }
-  .simple-card .price{ font-family:'Cormorant Garamond', serif; font-size:2.2rem; font-weight:700; color:var(--maroon-900); }
+  .simple-card .price{ font-family:'Cormorant Garamond', serif; font-size:2.1rem; font-weight:700; color:var(--maroon-900); }
+  .simple-card .price.on-request{ font-size:1.05rem; font-family:'Marcellus', serif; letter-spacing:0.03em; }
 
   /* ---------- Advance payment highlight ---------- */
   .advance{
@@ -365,29 +446,31 @@
     position:relative; z-index:2;
     max-width:760px; margin:0 auto;
     border:1px solid var(--gold-500);
-    padding:clamp(34px,5vw,54px);
+    padding:clamp(30px,5vw,54px);
     text-align:center;
   }
   .advance-box .eyebrow.on-dark{ display:block; margin-bottom:14px; }
-  .advance-box h2{ color:var(--gold-300); font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:18px; }
+  .advance-box h2{ color:var(--gold-300); font-size:clamp(1.6rem,3.4vw,2.4rem); margin-bottom:18px; }
   .advance-box p{ line-height:1.85; opacity:0.9; max-width:52ch; margin:0 auto 10px; }
   .gpay-pill{
     display:inline-flex; align-items:center; gap:12px;
     margin:22px 0 8px;
-    padding:14px 28px;
+    padding:14px 24px;
     border:1px solid var(--gold-500);
     border-radius:40px;
     background:rgba(201,162,39,0.08);
+    flex-wrap:wrap;
+    justify-content:center;
   }
   .gpay-pill .lbl{ font-family:'Marcellus', serif; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-300); }
-  .gpay-pill .num{ font-family:'Cormorant Garamond', serif; font-size:1.5rem; font-weight:600; letter-spacing:0.04em; }
+  .gpay-pill .num{ font-family:'Cormorant Garamond', serif; font-size:1.4rem; font-weight:600; letter-spacing:0.04em; }
   .advance-steps{
-    display:flex; justify-content:center; gap:34px; flex-wrap:wrap;
+    display:flex; justify-content:center; gap:30px; flex-wrap:wrap;
     margin-top:30px; text-align:left;
   }
   .advance-steps .step{ max-width:180px; }
   .advance-steps .step .n{
-    font-family:'Cormorant Garamond', serif; font-size:1.6rem; color:var(--gold-300); font-weight:700; margin-bottom:6px;
+    font-family:'Cormorant Garamond', serif; font-size:1.5rem; color:var(--gold-300); font-weight:700; margin-bottom:6px;
   }
   .advance-steps .step p{ font-size:0.82rem; margin:0; opacity:0.78; }
 
@@ -396,7 +479,7 @@
   .contact-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
   }
-  .contact-info h2{ color:var(--maroon-900); font-size:clamp(2rem,3.6vw,2.6rem); margin:10px 0 18px; }
+  .contact-info h2{ color:var(--maroon-900); font-size:clamp(1.9rem,3.6vw,2.6rem); margin:10px 0 18px; }
   .contact-info p{ line-height:1.8; opacity:0.8; margin-bottom:28px; }
   .info-row{ display:flex; align-items:center; gap:14px; margin-bottom:18px; }
   .info-row .ic{
@@ -405,13 +488,13 @@
     display:flex; align-items:center; justify-content:center; flex-shrink:0;
   }
   .info-row .ic svg{ width:17px; height:17px; }
-  .info-row .txt{ font-size:0.92rem; }
+  .info-row .txt{ font-size:0.9rem; }
   .info-row .txt b{ display:block; font-family:'Marcellus', serif; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--wine-700); margin-bottom:2px; }
 
   form.booking{
     background:var(--ivory-50);
     border:1px solid var(--line);
-    padding:clamp(28px,4vw,44px);
+    padding:clamp(24px,4vw,44px);
   }
   form.booking .field{ margin-bottom:22px; }
   form.booking label{
@@ -447,8 +530,16 @@
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:26px;
     padding-bottom:34px;
   }
-  .footer-brand .mark{ font-family:'Cormorant Garamond', serif; font-size:1.7rem; font-weight:700; letter-spacing:0.12em; color:var(--gold-300); }
-  .footer-brand .sub{ font-family:'Marcellus', serif; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.6; margin-top:4px; }
+  .footer-brand{ display:flex; align-items:center; gap:12px; }
+  .footer-brand .logo-img{ height:46px; width:46px; object-fit:contain; border-radius:50%; flex-shrink:0; }
+  .footer-brand .logo-fallback{
+    height:46px; width:46px; flex-shrink:0; border-radius:50%;
+    background:rgba(247,233,218,0.08); border:1px solid var(--gold-500);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif; font-weight:700; font-size:1.35rem; color:var(--gold-300);
+  }
+  .footer-brand .mark{ font-family:'Cormorant Garamond', serif; font-size:1.6rem; font-weight:700; letter-spacing:0.12em; color:var(--gold-300); }
+  .footer-brand .sub{ font-family:'Marcellus', serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.6; margin-top:4px; }
   .social-row{ display:flex; gap:14px; }
   .social-row a{
     width:46px; height:46px; border-radius:50%;
@@ -465,10 +556,67 @@
     font-size:0.78rem; opacity:0.55;
   }
 
-  /* ---------- Responsive ---------- */
+  /* ---------- Chatbot widget ---------- */
+  .chat-launcher{
+    position:fixed; right:22px; bottom:22px; z-index:200;
+    width:60px; height:60px; border-radius:50%;
+    background:var(--wine-700); border:1px solid var(--wine-700);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; box-shadow:var(--shadow);
+    transition:transform .25s ease;
+  }
+  .chat-launcher:hover{ transform:scale(1.06); }
+  .chat-launcher svg{ width:26px; height:26px; fill:var(--cream); }
+  .chat-window{
+    position:fixed; right:22px; bottom:94px; z-index:200;
+    width:min(340px, calc(100vw - 44px));
+    height:min(460px, calc(100vh - 150px));
+    background:var(--ivory-50);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    display:none;
+    flex-direction:column;
+    overflow:hidden;
+  }
+  .chat-window.open{ display:flex; }
+  .chat-head{
+    background:var(--wine-700); color:var(--cream);
+    padding:16px 18px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .chat-head .t1{ font-family:'Cormorant Garamond', serif; font-size:1.2rem; font-weight:700; }
+  .chat-head .t2{ font-family:'Marcellus', serif; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.85; }
+  .chat-close{ background:none; border:none; color:var(--cream); font-size:1.3rem; cursor:pointer; line-height:1; padding:4px; }
+  .chat-body{
+    flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:10px;
+    background:var(--ivory-50);
+  }
+  .chat-msg{ max-width:84%; padding:10px 14px; font-size:0.86rem; line-height:1.5; border-radius:2px; }
+  .chat-msg.bot{ background:var(--blush-100); color:var(--ink-900); align-self:flex-start; border-left:2px solid var(--wine-700); }
+  .chat-msg.user{ background:var(--wine-700); color:var(--cream); align-self:flex-end; }
+  .chat-quick{ display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; }
+  .chat-quick button{
+    font-size:0.72rem; padding:6px 12px; border-radius:20px;
+    border:1px solid var(--line); background:var(--ivory-50); color:var(--wine-700);
+    cursor:pointer; transition:background .2s ease, color .2s ease;
+  }
+  .chat-quick button:hover{ background:var(--wine-700); color:var(--cream); }
+  .chat-inputrow{
+    display:flex; border-top:1px solid var(--line);
+  }
+  .chat-inputrow input{
+    flex:1; border:none; padding:14px; font-family:'Jost', sans-serif; font-size:0.86rem;
+    background:var(--ivory-50); color:var(--ink-900); outline:none;
+  }
+  .chat-inputrow button{
+    background:var(--wine-700); border:none; color:var(--cream);
+    padding:0 18px; cursor:pointer; font-size:0.8rem; letter-spacing:0.05em; text-transform:uppercase;
+  }
+
+  /* ---------- Responsive: tablets ---------- */
   @media (max-width:900px){
     nav.links{
-      position:fixed; top:64px; left:0; right:0;
+      position:fixed; top:68px; left:0; right:0;
       background:var(--ivory-50);
       flex-direction:column; align-items:flex-start;
       padding:24px clamp(20px,5vw,64px);
@@ -477,14 +625,86 @@
       transition:transform .35s ease;
       gap:18px;
       z-index:99;
+      max-height:calc(100vh - 68px);
+      overflow-y:auto;
     }
     nav.links.open{ transform:translateY(0); }
+    nav.links a{ font-size:1rem; }
+    .nav-cta{ align-self:flex-start; }
     .burger{ display:block; }
     .hero-inner{ grid-template-columns:1fr; text-align:center; }
     .hero-ctas{ justify-content:center; }
-    .hero-medallion{ order:-1; width:200px; }
+    .hero-medallion{ order:-1; width:190px; }
     .about-grid, .contact-grid{ grid-template-columns:1fr; }
     .about-frame{ max-width:340px; margin:0 auto; }
+
+    .nav-dropdown{ width:100%; }
+    .nav-dropdown > .drop-toggle{
+      width:100%; justify-content:space-between; font-size:1rem;
+    }
+    .dropdown-menu{
+      position:static; transform:none; opacity:1; visibility:visible;
+      display:none; box-shadow:none; border:none; border-left:2px solid var(--wine-700);
+      min-width:0; width:100%; margin-top:8px; padding:0 0 0 10px; background:transparent;
+    }
+    .nav-dropdown.open .dropdown-menu{ display:block; }
+    .nav-dropdown.open > .drop-toggle .caret{ transform:rotate(-135deg); margin-top:2px; }
+  }
+
+  /* ---------- Responsive: phones ---------- */
+  @media (max-width:560px){
+    .navbar{ padding:10px 18px; }
+    .brand .logo-img, .brand .logo-fallback{ height:38px; width:38px; }
+    .brand .mark{ font-size:1.25rem; }
+    .brand .sub{ font-size:0.54rem; letter-spacing:0.12em; }
+    .nav-cta{ padding:9px 16px; font-size:0.72rem; }
+
+    section{ padding:44px 0; }
+    .wrap{ padding:0 18px; }
+
+    .hero{ padding:44px 0 40px; }
+    .hero h1{ font-size:2.2rem; }
+    .hero p.tag{ font-size:0.95rem; margin-bottom:26px; }
+    .hero-ctas{ width:100%; }
+    .hero-ctas .btn{ flex:1 1 auto; justify-content:center; }
+
+    .section-head{ margin-bottom:32px; }
+    .section-head h2{ font-size:1.7rem; }
+
+    .svc-tabs{
+      flex-wrap:nowrap;
+      overflow-x:auto;
+      justify-content:flex-start;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:6px;
+      margin-bottom:32px;
+      scrollbar-width:thin;
+    }
+    .svc-tabs button{ flex:0 0 auto; }
+
+    .card-grid{ gap:20px; }
+    .svc-card{ padding:26px 22px 24px; }
+    .svc-card .price{ font-size:2rem; }
+
+    .simple-row{ gap:16px; }
+
+    .gpay-pill{ padding:12px 18px; gap:8px; }
+    .gpay-pill .num{ font-size:1.2rem; }
+    .advance-steps{ gap:22px; }
+    .advance-steps .step{ max-width:none; flex:1 1 100%; }
+
+    form.booking{ padding:22px; }
+
+    .footer-top{ flex-direction:column; align-items:flex-start; }
+    .social-row{ width:100%; justify-content:flex-start; }
+
+    .hero{
+      background:radial-gradient(ellipse at 20% 0%, var(--wine-600) 0%, var(--maroon-900) 30%, var(--maroon-950) 100%);
+    }
+    .hero::before{ opacity:0.04; }
+
+    .chat-window{ right:12px; bottom:82px; }
+    .chat-launcher{ right:16px; bottom:16px; }
   }
 </style>
 </head>
@@ -494,8 +714,13 @@
 <header>
   <div class="navbar">
     <a href="#top" class="brand">
-      <span class="mark">SISA</span>
-      <span class="sub">Makeup&nbsp;Artistry</span>
+      <!-- Replace logo.png with your logo file (square image works best). If it fails to load, the initial badge below is shown instead. -->
+      <img src="sisalogo.png" alt="SISA logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <span class="logo-fallback" style="display:none;"></span>
+      <span class="brand-text">
+        <span class="mark">SISA</span>
+        <span class="sub">Where Beauty Becomes Legacy</span>
+      </span>
     </a>
     <button class="burger" id="burgerBtn" aria-label="Toggle menu">
       <span></span><span></span><span></span>
@@ -503,9 +728,16 @@
     <nav class="links" id="navLinks">
       <a href="#top">Home</a>
       <a href="#about">About</a>
-      <a href="#bride">Bride</a>
-      <a href="#bridesmaid">Bridesmaid</a>
-      <a href="#groom-trial">Groom &amp; Trial</a>
+      <div class="nav-dropdown" id="navDropdown">
+        <button type="button" class="drop-toggle" id="dropToggle">Grand Bridal Catalogue <span class="caret"></span></button>
+        <div class="dropdown-menu">
+          <a href="#services" data-tab="bride">Bride</a>
+          <a href="#services" data-tab="bridesmaid">Bridesmaids</a>
+          <a href="#services" data-tab="bridesmaid-bride">Bridesmaid + Bride</a>
+          <a href="#services" data-tab="mehandi-nails">Mehandi &amp; Nail Art</a>
+          <a href="#services" data-tab="groom-trial">Groom &amp; Trial</a>
+        </div>
+      </div>
       <a href="#advance">Booking Info</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </nav>
@@ -520,11 +752,11 @@
       <h1>Every function,<br>a <em>finished</em> look.</h1>
       <p class="tag">SISA is the makeup studio of Sowntharya — HD, skin-finish and airbrush looks for brides, bridesmaids and grooms, crafted for every function from mugurtham to reception.</p>
       <div class="hero-ctas">
-        <a href="#bride" class="btn btn-gold">View Packages</a>
+        <a href="#services" class="btn btn-gold">View Packages</a>
         <a href="#contact" class="btn btn-outline">Book a Date</a>
       </div>
     </div>
-    <div class="hero-medallion">
+<!--    <div class="hero-medallion">
       <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
         <g class="ring">
           <circle cx="150" cy="150" r="140" fill="none" stroke="#E8C874" stroke-width="1" stroke-dasharray="2 8"/>
@@ -532,10 +764,28 @@
         <circle cx="150" cy="150" r="112" fill="none" stroke="#C9A227" stroke-width="1.2"/>
         <circle cx="150" cy="150" r="96" fill="none" stroke="#C9A227" stroke-width="0.6" opacity="0.6"/>
         <text x="150" y="140" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="52" font-weight="700" fill="#E8C874" font-style="italic">SISA</text>
-        <text x="150" y="178" text-anchor="middle" font-family="Marcellus, serif" font-size="11" letter-spacing="4" fill="#F7E9DA" opacity="0.8">SOWNTHARYA</text>
+        <text x="150" y="178" text-anchor="middle" font-family="Marcellus, serif" font-size="11" letter-spacing="4" fill="#F7E9DA" opacity="0.8"> Sowntharya
       </svg>
-    </div>
-  </div>
+    </div>-->
+<div class="hero-medallion">
+  <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+    <g class="ring">
+      <circle cx="150" cy="150" r="140" fill="none" stroke="#E8C874" stroke-width="1" stroke-dasharray="2 8"/>
+    </g>
+    <circle cx="150" cy="150" r="112" fill="none" stroke="#C9A227" stroke-width="1.2"/>
+    <circle cx="150" cy="150" r="96" fill="none" stroke="#C9A227" stroke-width="0.6" opacity="0.6"/>
+    
+    <!-- Stacked text -->
+    <text x="150" y="130" text-anchor="middle" font-family="Cormorant Garamond, serif" fill="#E8C874">
+      <tspan font-size="52" font-weight="700" font-style="italic" x="150" dy="0">SISA</tspan>
+      <tspan font-size="14" font-family="Marcellus, serif" letter-spacing="3" fill="#F7E9DA" opacity="0.8" x="150" dy="28">By</tspan>
+      <tspan font-size="11" font-family="Marcellus, serif" letter-spacing="4" fill="#F7E9DA" opacity="0.8" x="150" dy="18">Sowntharya</tspan>
+    </text>
+  </svg>
+</div>
+
+
+  </div> 
 </section>
 <svg class="zari on-dark" viewBox="0 0 1180 22" preserveAspectRatio="none"><path d="M0,11 Q30,0 60,11 T120,11 T180,11 T240,11 T300,11 T360,11 T420,11 T480,11 T540,11 T600,11 T660,11 T720,11 T780,11 T840,11 T900,11 T960,11 T1020,11 T1080,11 T1140,11 T1180,11"/></svg>
 
@@ -543,14 +793,14 @@
 <section class="about" id="about">
   <div class="wrap about-grid">
     <div class="about-frame">
-      <img src="Sisa.png" alt="About Image">
-     <!-- <div class="inner"><span>S</span></div> -->
+      <img src="Sisa.png" alt="Sowntharya, founder of SISA" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="inner" style="display:none;"><span>S</span></div>
     </div>
     <div class="about-copy">
       <p class="eyebrow">The Artist</p>
       <h2>Meet Sowntharya, founder of SISA</h2>
       <p>SISA was built on a simple idea — makeup that photographs beautifully and still feels like you by the end of a long function day. From the first Haldi to the Reception night, every look is tailored to your skin, your outfit and your event.</p>
-      <p>With a steady hand for both HD and airbrush finishes, Sowntharya works across bridal, bridesmaid, party and groom makeup, pairing every look with hairstyling and saree or shawl draping for a complete, camera-ready finish.</p>
+      <p>With a steady hand for both HD and airbrush finishes, Sowntharya works across bridal, bridesmaid, party and groom makeup, pairing every look with hairstyling and saree or shawl draping — plus mehandi and nail art — for a complete, camera-ready finish.</p>
       <p class="signature">— Sowntharya, SISA</p>
     </div>
   </div>
@@ -560,15 +810,16 @@
 <section class="services" id="services">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Packages</p>
+      <p class="eyebrow">Grand Bridal Catalogue</p>
       <h2>What SISA Offers</h2>
-      <p>Every package includes makeup, hairstyle and saree drape / shawl drape — choose the look and function below.</p>
+      <p>Every makeup package includes hairstyle and saree drape / shawl drape — choose the look and function below.</p>
     </div>
 
     <div class="svc-tabs">
       <button class="tab-btn active" data-tab="bride">Bride</button>
       <button class="tab-btn" data-tab="bridesmaid">Bridesmaids</button>
       <button class="tab-btn" data-tab="bridesmaid-bride">Bridesmaid + Bride</button>
+      <button class="tab-btn" data-tab="mehandi-nails">Mehandi &amp; Nail Art</button>
       <button class="tab-btn" data-tab="groom-trial">Groom &amp; Trial</button>
     </div>
 
@@ -641,6 +892,50 @@
       </div>
     </div>
 
+    <!-- MEHANDI & NAIL ART -->
+    <div class="svc-panel" id="mehandi-nails">
+      <p class="panel-note">Bridal and guest mehandi, plus nail art add-ons for any function</p>
+      <div class="card-grid">
+        <div class="svc-card">
+          <span class="corner"></span><span class="corner bl"></span>
+          <h3>Bridal Mehandi</h3>
+          <div class="price on-request">Price on request</div>
+          <div class="applies-label">Applicable For</div>
+          <div class="applies-tags">
+            <span>Bride</span><span>Mugurtham</span><span>Wedding</span>
+          </div>
+          <ul class="includes">
+            <li>Full hands &amp; feet coverage</li><li>Custom bridal design</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <span class="corner"></span><span class="corner bl"></span>
+          <h3>Guest / Simple Mehandi</h3>
+          <div class="price on-request">Price on request</div>
+          <div class="applies-label">Applicable For</div>
+          <div class="applies-tags">
+            <span>Guest</span><span>Sangeeth</span><span>Haldi</span><span>Party</span>
+          </div>
+          <ul class="includes">
+            <li>Front hand design</li><li>Light &amp; quick application</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <span class="corner"></span><span class="corner bl"></span>
+          <h3>Nail Art</h3>
+          <div class="price on-request">Price on request</div>
+          <div class="applies-label">Applicable For</div>
+          <div class="applies-tags">
+            <span>Bride</span><span>Bridesmaid</span><span>Guest</span>
+          </div>
+          <ul class="includes">
+            <li>Colour matched to outfit</li><li>Add-on to any package</li>
+          </ul>
+        </div>
+      </div>
+      <p class="form-note" style="margin-top:28px;">Message us on WhatsApp with your design preference for a quote.</p>
+    </div>
+
     <!-- GROOM & TRIAL -->
     <div class="svc-panel" id="groom-trial">
       <p class="panel-note">Groom makeup and trial sessions ahead of the big day</p>
@@ -677,15 +972,15 @@
       </div>
       <div class="advance-steps">
         <div class="step">
-          <div class="n">01</div>
+          <div class="n">Step 1</div>
           <p>Send the ₹5,000 advance to the GPay number above to hold your date.</p>
         </div>
         <div class="step">
-          <div class="n">02</div>
+          <div class="n">Step 2</div>
           <p>Once done, share the payment screenshot with us on WhatsApp.</p>
         </div>
         <div class="step">
-          <div class="n">03</div>
+          <div class="n">Step 3</div>
           <p>Your date is confirmed — thank you!</p>
         </div>
       </div>
@@ -701,30 +996,33 @@
       <h2>Let's plan your look</h2>
       <p>Send your name and a short message about your function date — it will open directly in WhatsApp so we can reply quickly.</p>
 
+        <div class="info-row">
+          <a href="https://www.instagram.com/sowntharya_hairandmakeup?igsh=ODhuYjBodjZsNjF2" target="_blank">
+        <span class="ic">
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Zm4.5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM18 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
+        </span></a>
+        <span class="txt"><b>Instagram</b>@sowntharya_hairandmakeup</span>
+      </div>
       <div class="info-row">
+        <a href="https://wa.me/917708946029" target="_blank">
         <span class="ic">
           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20.5 3.5A10.6 10.6 0 0 0 3.7 16.9L2 22l5.2-1.6a10.6 10.6 0 0 0 15.3-9.5 10.5 10.5 0 0 0-2-7.4Zm-8.4 16.3a8.7 8.7 0 0 1-4.4-1.2l-.3-.2-3 .9.9-2.9-.2-.3a8.8 8.8 0 1 1 7 3.7Zm4.8-6.6c-.3-.1-1.6-.8-1.8-.9s-.4-.1-.6.1-.7.9-.9 1-.3.2-.6.1a7.2 7.2 0 0 1-2.1-1.3 8 8 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.6l.4-.5.2-.4v-.4c-.1-.1-.6-1.5-.8-2s-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8s2 3 4.7 4.2a15.8 15.8 0 0 0 1.6.6 3.8 3.8 0 0 0 1.7.1c.5-.1 1.6-.6 1.8-1.3s.2-1.2.2-1.3-.2-.2-.4-.3Z"/></svg>
-        </span>
+        </span></a>
         <span class="txt"><b>WhatsApp</b>+91 77089 46029</span>
       </div>
       <div class="info-row">
+        <a href="https://maps.app.goo.gl/xVNtyQjy6StHhMZc9" target="_blank">
         <span class="ic">
           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5c0 3.8 5 12 5 12s5-8.2 5-12a5 5 0 0 0-5-5Zm0 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4Z"/></svg>
-        </span>
-        <span class="txt"><b>Studio Location</b>Salem, Tamil Nadu</span>
-      </div>
-      <div class="info-row">
-        <span class="ic">
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Zm4.5 3.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11Zm0 2a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7ZM18 6.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/></svg>
-        </span>
-        <span class="txt"><b>Instagram</b>@sowntharya_hairandmakeup</span>
+        </span></a>
+        <span class="txt"><b>Studio Location</b>Sakthi Nagar, Thattanchavadi, Salem District, Tamil Nadu – 636012</span>
       </div>
     </div>
 
     <form class="booking" id="bookingForm">
       <div class="field">
         <label for="nameField">Your Name</label>
-        <input type="text" id="nameField" placeholder="e.g. Priya Raman" required>
+        <input type="text" id="nameField" placeholder="e.g. Priya" required>
       </div>
       <div class="field">
         <label for="msgField">Message</label>
@@ -734,7 +1032,6 @@
         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M20.5 3.5A10.6 10.6 0 0 0 3.7 16.9L2 22l5.2-1.6a10.6 10.6 0 0 0 15.3-9.5 10.5 10.5 0 0 0-2-7.4Z"/></svg>
         Send on WhatsApp
       </button>
-      <!-- <p class="form-note">This opens WhatsApp with your message pre-filled — nothing is stored on this site.</p> -->
     </form>
   </div>
 </section>
@@ -744,8 +1041,12 @@
   <div class="wrap">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="mark">SISA</div>
-        <div class="sub">Makeup Artistry by Sowntharya</div>
+        <img src="sisalogo.png" alt="SISA logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="logo-fallback" style="display:none;"></span>
+        <div>
+          <div class="mark">SISA</div>
+          <div class="sub">Makeup Artistry by Sowntharya</div>
+        </div>
       </div>
       <div class="social-row">
         <!-- Instagram -->
@@ -769,22 +1070,72 @@
   </div>
 </footer>
 
+<!-- ================= CHATBOT ================= -->
+<div class="chat-launcher" id="chatLauncher" aria-label="Open chat">
+  <svg viewBox="0 0 24 24"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-5 4V6a2 2 0 0 1 2-2Z"/></svg>
+</div>
+<div class="chat-window" id="chatWindow">
+  <div class="chat-head">
+    <div>
+      <div class="t1">SISA Assistant</div>
+      <div class="t2">Usually replies instantly</div>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-quick" id="chatQuick">
+    <button data-q="bride price">Bride prices</button>
+    <button data-q="advance payment">Advance payment</button>
+    <button data-q="groom">Groom package</button>
+    <button data-q="location">Studio location</button>
+    <button data-q="whatsapp">Contact on WhatsApp</button>
+  </div>
+  <div class="chat-inputrow">
+    <input type="text" id="chatInput" placeholder="Type your question...">
+    <button id="chatSend">Send</button>
+  </div>
+</div>
+
 <script>
   // Mobile nav toggle
   const burger = document.getElementById('burgerBtn');
   const navLinks = document.getElementById('navLinks');
   burger.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', (e) => {
+    if (a.closest('.dropdown-menu')) return; // handled separately below
+    navLinks.classList.remove('open');
+  }));
+
+  // Grand Bridal Catalogue dropdown
+  const navDropdown = document.getElementById('navDropdown');
+  const dropToggle = document.getElementById('dropToggle');
+  dropToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    navDropdown.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!navDropdown.contains(e.target)) navDropdown.classList.remove('open');
+  });
 
   // Service tabs
   const tabBtns = document.querySelectorAll('.tab-btn');
   const panels = document.querySelectorAll('.svc-panel');
+  function activateTab(tabId){
+    tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+    panels.forEach(p => p.classList.toggle('active', p.id === tabId));
+  }
   tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => b.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(btn.dataset.tab).classList.add('active');
+    btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+  });
+
+  // Dropdown menu items -> jump to matching service view
+  document.querySelectorAll('.dropdown-menu a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(link.dataset.tab);
+      navDropdown.classList.remove('open');
+      navLinks.classList.remove('open');
+      document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
     });
   });
 
@@ -798,6 +1149,86 @@
     const text = `Hi SISA, I am ${name}.\n\n${msg}`;
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
+  });
+
+  // ---------------- Chatbot ----------------
+  const chatLauncher = document.getElementById('chatLauncher');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatBody = document.getElementById('chatBody');
+  const chatInput = document.getElementById('chatInput');
+  const chatSend = document.getElementById('chatSend');
+  const chatQuick = document.getElementById('chatQuick');
+
+  function addMsg(text, who){
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + who;
+    div.textContent = text;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  let greeted = false;
+  chatLauncher.addEventListener('click', () => {
+    chatWindow.classList.toggle('open');
+    if (chatWindow.classList.contains('open') && !greeted){
+      addMsg("Hi! I'm the SISA assistant. Ask me about packages, pricing, booking or location — or tap a quick question below.", 'bot');
+      greeted = true;
+    }
+  });
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
+
+  const FAQ = [
+    { k: ['bride price','bride package','bride cost','engagement','mugurtham','reception','baby shower'],
+      a: "For Bride looks (Engagement, Mugurtham, Reception & Baby Shower): HD / Skin Finish is ₹30,000 and Airbrush is ₹35,000. Both include makeup, hairstyle and saree/shawl drape." },
+    { k: ['bridesmaid price','bridesmaid package','bridesmaid cost','sangeeth','haldi','mehendi function','puberty','inai seer','elunthigam'],
+      a: "Bridesmaid / Guest looks (Sangeeth, Haldi, Party, Mehendi, Puberty, Inai Seer & Elunthigam) are ₹20,000, including makeup, hairstyle and saree/shawl drape." },
+    { k: ['bridesmaid + bride','bridesmaid with bride','two bridesmaid','2 bridesmaid'],
+      a: "A Bridesmaid alongside the Bride, or 2 Bridesmaids together, is ₹15,000 per person, including makeup, hairstyle and saree/shawl drape." },
+    { k: ['mehandi','henna','nail','nail art'],
+      a: "Bridal Mehandi, Guest/Simple Mehandi and Nail Art are all priced on request depending on design — message us on WhatsApp with your preference for a quote." },
+    { k: ['groom'],
+      a: "Groom Makeup is ₹5,000." },
+    { k: ['trial'],
+      a: "Trial Makeup is ₹5,000 for the Bride and ₹3,000 for a Bridesmaid." },
+    { k: ['advance','payment','booking info','confirm date','gpay'],
+      a: "To confirm your date, a non-refundable advance of ₹5,000 is required via GPay to 77089 46029. After paying, please share the screenshot with us on WhatsApp to lock in your date." },
+    { k: ['location','address','studio','where are you'],
+      a: "Our studio is at Sakthi Nagar, Thattanchavadi, Tamil Nadu 636012. Tap the location icon in the Contact section for the map." },
+    { k: ['whatsapp','contact','phone','number','call'],
+      a: "You can reach us on WhatsApp at +91 77089 46029, or use the contact form on this page and it'll open a WhatsApp chat for you." },
+    { k: ['instagram'],
+      a: "Follow us on Instagram @sowntharya_hairandmakeup for our latest bridal looks." },
+    { k: ['include','what\'s included','whats included','hairstyle','drape'],
+      a: "Every makeup package includes the makeup itself, hairstyling and a saree drape / shawl drape." },
+    { k: ['hi','hello','hey'],
+      a: "Hello! Ask me about Bride, Bridesmaid, Mehandi, Nail Art, Groom packages, pricing, advance payment or our location." }
+  ];
+
+  function getBotReply(msg){
+    const m = msg.toLowerCase();
+    for (const item of FAQ){
+      if (item.k.some(kw => m.includes(kw))) return item.a;
+    }
+    return "I don't have an exact answer for that, but I can help with package pricing, advance payment, booking info, location or contact details. You can also message us directly on WhatsApp at +91 77089 46029.";
+  }
+
+  function handleSend(text){
+    const val = (text !== undefined ? text : chatInput.value).trim();
+    if (!val) return;
+    addMsg(val, 'user');
+    chatInput.value = '';
+    setTimeout(() => addMsg(getBotReply(val), 'bot'), 350);
+  }
+
+  chatSend.addEventListener('click', () => handleSend());
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
+  chatQuick.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!chatWindow.classList.contains('open')){ chatWindow.classList.add('open'); }
+      if (!greeted){ addMsg("Hi! I'm the SISA assistant. Ask me about packages, pricing, booking or location — or tap a quick question below.", 'bot'); greeted = true; }
+      handleSend(btn.dataset.q);
+    });
   });
 </script>
 
